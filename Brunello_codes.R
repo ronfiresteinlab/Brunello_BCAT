@@ -3,10 +3,10 @@ require(tidyverse)
 require(ggrepel)
 
 ##load data
-#Brunello sgRNA fold-change data
+#Brunello sgRNA sequencing raw reads
 brunello_rawread <- read.xlsx("./brunello_rawreads.xlsx")
 
-#Brunello MAGEcK datasets, lowGFP, highGFP and proliferation
+#Brunello MAGEcK-VISPR datasets, lowGFP, highGFP and proliferation
 Enrichment_list <- read.xlsx("./Brunello_lowGFP.xlsx")
 
 Enrichment_highGFP_list <- read.xlsx("./Brunello_HiGFP.xlsx")
