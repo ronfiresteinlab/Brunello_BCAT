@@ -75,7 +75,6 @@ brunello <- brunello_rawread %>%
             DLD1_MYC_HighGFP = (DLD_myc_1st_HiGFP + DLD_myc_2nd_HiGFP)/(DLD1_cmyc1st_Day7 + DLD1_cmyc2nd_Day7),
             RKO_MYC_HighGFP = (RKO_myc_1st_HiGFP + RKO_myc_2nd_HiGFP)/(RKO_1st_Day7 + RKO_2nd_Day7),
             DLD1_proliferation_FC = (DLD1_cmyc1st_Day21 + DLD1_cmyc2nd_Day21)/Bruneloo_plasmid * 0.5,
-            DLD1_proliferation2_FC = (DLD1_axin_1st_DAY21 + DLD1_axin_2nd_DAY21)/Bruneloo_plasmid * 0.5,
             RKO_proliferaiton_FC = (RKO_1st_Day21 + RKO_2nd_Day21)/Bruneloo_plasmid * 0.5
             ) %>% 
   drop_na()
