@@ -30,7 +30,6 @@ write.csv(df1, "Table S1.csv")
 
 ##process raw data for volcanoplot
 #normalize the reads and calculate the fold-change values per sgRNA
-str(brunello_rawread)
 brunello <- brunello_rawread %>% 
   transmute(Symbol = Symbol,
             Bruneloo_plasmid = Brunello_Plasmid/sum(.$Brunello_Plasmid)*1000000,
@@ -159,10 +158,11 @@ ggplot()+
                   segment.size = 0
                   )+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 1D.pdf")
+ggsave(filename = "Figure 1D.pdf", width = 4.05, height = 3.6)
 
 #MYC plot
 ggplot()+
@@ -181,10 +181,11 @@ ggplot()+
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 2C.pdf")
+ggsave("Figure 2C.pdf", width = 4.05, height = 3.6)
 
 #Axin2 plot
 ggplot()+
@@ -204,10 +205,11 @@ ggplot()+
                   segment.size = 0
   )+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 2D.pdf")
+ggsave("Figure 2D.pdf", width = 4.05, height = 3.6)
 
 #RKO plot
 ggplot()+
@@ -226,14 +228,14 @@ ggplot()+
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 2E.pdf")
+ggsave("Figure 2E.pdf", width = 4.05, height = 3.6)
 
 ###highGFP plot
 
-str(Enrichment_highGFP_list)
 Brunello_mageck_highGFP <- Enrichment_highGFP_list %>%
   #define indifinte value as 5
   transmute(Symbol = Symbol,
@@ -249,10 +251,11 @@ Brunello_mageck_highGFP <- Enrichment_highGFP_list %>%
   left_join(brunello1, by = "Symbol") %>% 
   #remove NA values from dataframe
   drop_na() %>% 
-  mutate(TOPGC = ifelse(TOPGC_highZscore >= 0, "N", "T"),
-         AXIN2 = ifelse(AXIN2_highZscore >= 0, "N", "T"),
-         MYC = ifelse(MYC_highZscore >= 0, "N", "T"),
-         RKO = ifelse(RKO_highZscore >= 0, "N", "T"))  
+  mutate(TOPGC = ifelse(TOPGC_highZscore >= 0, "T","N"),
+         AXIN2 = ifelse(AXIN2_highZscore >= 0, "T", "N"),
+         MYC = ifelse(MYC_highZscore >= 0, "T", "N"),
+         RKO = ifelse(RKO_highZscore >= 0, "T", "N"))  
+
 #TOPGC-highGFP plot
 ggplot()+
   geom_point(data = Brunello_mageck_highGFP,
@@ -269,52 +272,11 @@ ggplot()+
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure S1B.pdf")
-
-#MYC-highGFP plot
-ggplot()+
-  geom_point(data = Brunello_mageck_highGFP,
-             aes(x = MYC_highZscore, y = MYC_pscore),color = "grey",size = 1)+
-  geom_point(data = subset(Brunello_mageck_highGFP, 
-                           Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1")),
-             aes(x = MYC_highZscore, y = MYC_pscore, color = MYC),size = 2)+
-  geom_text_repel(data = subset(Brunello_mageck_highGFP, 
-                                Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1")), 
-                  aes(x = MYC_highZscore, y = MYC_pscore,color = MYC,label = Symbol),
-                  box.padding = unit(0.35, "lines"),
-                  point.padding = unit(0.3, "lines"),
-                  nudge_y = 0.1,
-                  segment.color = NA,
-                  segment.size = 0)+
-  theme_classic()+
-  ylim(0,5.5)+
-  xlab("Z-score")+ylab("-log10(P-value)")
-
-ggsave("mageck_MYChighGFP_log10pvalue_vs_Zscore.pdf")
-
-#AXIN2-highGFP plot
-ggplot()+
-  geom_point(data = Brunello_mageck_highGFP,
-             aes(x = AXIN2_highZscore, y = AXIN2_pscore),color = "grey",size = 1)+
-  geom_point(data = subset(Brunello_mageck_highGFP, 
-                           Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1")),
-             aes(x = AXIN2_highZscore, y = AXIN2_pscore, color = AXIN2),size = 2)+
-  geom_text_repel(data = subset(Brunello_mageck_highGFP, 
-                                Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1")), 
-                  aes(x = AXIN2_highZscore, y = AXIN2_pscore,color = AXIN2,label = Symbol),
-                  box.padding = unit(0.35, "lines"),
-                  point.padding = unit(0.3, "lines"),
-                  nudge_y = 0.1,
-                  segment.color = NA,
-                  segment.size = 0)+
-  theme_classic()+
-  ylim(0,5.5)+
-  xlab("Z-score")+ylab("-log10(P-value)")
-
-ggsave("mageck_MYChighGFP_log10pvalue_vs_Zscore.pdf")
+ggsave("Figure S1B.pdf", width = 4.05, height = 3.6)
 
 
 ##make proliferation plots
@@ -333,8 +295,6 @@ Brunello_mageck_Proliferation <- brunello_proliferation %>%
   mutate(DLD1 = ifelse(DLD1_Proliferation_Zscore >= 0, "T", "N"),
          RKO = ifelse(RKO_Proliferation_Zscore >= 0, "T", "N")) 
 
-str(Brunello_mageck_Proliferation)
-
 #DLD1 Proliferation
 ggplot()+
   geom_point(data = Brunello_mageck_Proliferation,
@@ -351,6 +311,7 @@ ggplot()+
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   geom_hline(yintercept=-log10(0.05), linetype="dashed", color = "red")+
   xlab("Z-score")+ylab("-log10(P-value)")
@@ -373,6 +334,7 @@ ggplot()+
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
+  theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
@@ -380,5 +342,3 @@ ggsave("Figure S2A.pdf")
 
 
 dev.off()
-
-
