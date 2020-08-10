@@ -23,7 +23,7 @@ DLD1_RKO <- read.xlsx("./DLD1_RKO_expression.xlsx")
 df1 <- Enrichment_list %>% 
   left_join(Enrichment_highGFP_list, by = "Symbol") %>% 
   left_join(brunello_proliferation, by = "Symbol") %>% 
-  #left_join(DLD1_RKO, by = "Symbol") %>% 
+  left_join(DLD1_RKO, by = "Symbol") %>% 
   left_join(Essential_gene, by = "Symbol")
 
 write.csv(df1, "Table S1.csv")
