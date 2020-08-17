@@ -32,7 +32,7 @@ write.csv(df1, "Table S1.csv")
 #normalize the reads and calculate the fold-change values per sgRNA
 brunello <- brunello_rawread %>% 
   transmute(Symbol = Symbol,
-            Bruneloo_plasmid = Brunello_Plasmid/sum(.$Brunello_Plasmid)*1000000,
+            Brunelo_plasmid = Brunello_Plasmid/sum(.$Brunello_Plasmid)*1000000,
             DLD1_axin_1st_DAY21 = DLD1_axin_1st_DAY21_S7/sum(.$DLD1_axin_1st_DAY21_S7)*1000000,
             DLD1_axin_2nd_DAY21 = DLD1_axin_2nd_DAY21_S8/sum(.$DLD1_axin_2nd_DAY21_S8)*1000000,
             DLD1_axin_1st_DAY7 = DLD1_axin_1st_DAY7_S5/sum(.$DLD1_axin_1st_DAY7_S5)*1000000,
@@ -73,8 +73,8 @@ brunello <- brunello_rawread %>%
             DLD1_TOPGC_HighGFP = (TOP_GC_1st_HiGFP + TOP_GC_2nd_HiGFP)/(TOPGC_1st_DAY7 + TOPGC_2nd_DAY7),
             DLD1_MYC_HighGFP = (DLD_myc_1st_HiGFP + DLD_myc_2nd_HiGFP)/(DLD1_cmyc1st_Day7 + DLD1_cmyc2nd_Day7),
             RKO_MYC_HighGFP = (RKO_myc_1st_HiGFP + RKO_myc_2nd_HiGFP)/(RKO_1st_Day7 + RKO_2nd_Day7),
-            DLD1_proliferation_FC = (DLD1_cmyc1st_Day21 + DLD1_cmyc2nd_Day21)/Bruneloo_plasmid * 0.5,
-            RKO_proliferaiton_FC = (RKO_1st_Day21 + RKO_2nd_Day21)/Bruneloo_plasmid * 0.5
+            DLD1_proliferation_FC = (DLD1_cmyc1st_Day21 + DLD1_cmyc2nd_Day21)/Brunelo_plasmid * 0.5,
+            RKO_proliferaiton_FC = (RKO_1st_Day21 + RKO_2nd_Day21)/Brunelo_plasmid * 0.5
             ) %>% 
   drop_na()
 
