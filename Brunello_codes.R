@@ -124,7 +124,7 @@ brunello1 <- brunello %>%
 
 #combine two sets of data, transform mageck p-values
 Brunello_mageck1  <- brunello1 %>% 
-  left_join(Enrichment_list, by = "Symbol") %>% 
+  inner_join(Enrichment_list, by = "Symbol") %>% 
   #define indifinte value as 5
   mutate(TOPGC_pscore = ifelse(is.finite(log10(DLD1_TOPGC_low_pvalue)),
                                -log10(DLD1_TOPGC_low_pvalue),5),
@@ -135,8 +135,6 @@ Brunello_mageck1  <- brunello1 %>%
          RKO_pscore = ifelse(is.finite(log10(RKO_MYC_low_pvalue)),
                              -log10(RKO_MYC_low_pvalue),5)
   ) %>% 
-  #remove NA values from dataframe
-  drop_na() %>% 
   mutate(TOPGC = ifelse(DLD1_TOPGC_low_score >= 0, "N", "T"),
          AXIN2 = ifelse(DLD1_AXIN2_low_score >= 0, "N", "T"),
          MYC = ifelse(DLD1_MYC_low_score >= 0, "N", "T"),
@@ -250,9 +248,7 @@ Brunello_mageck_highGFP <- Enrichment_highGFP_list %>%
          RKO_pscore = ifelse(is.finite(-log10(RKO_MYC_high_pvalue)),
                              -log10(RKO_MYC_high_pvalue),5)
   ) %>% 
-  left_join(brunello1, by = "Symbol") %>% 
-  #remove NA values from dataframe
-  drop_na() %>% 
+  inner_join(brunello1, by = "Symbol") %>% 
   mutate(TOPGC = ifelse(TOPGC_highZscore >= 0, "T","N"),
          AXIN2 = ifelse(AXIN2_highZscore >= 0, "T", "N"),
          MYC = ifelse(MYC_highZscore >= 0, "T", "N"),
@@ -291,9 +287,7 @@ Brunello_mageck_Proliferation <- brunello_proliferation %>%
          RKO_pscore = ifelse(is.finite(-log10(RKO_Proliferation_pvalue)),
                                -log10(RKO_Proliferation_pvalue),5)
   ) %>% 
-  left_join(brunello1, by = "Symbol") %>% 
-  #remove NA values from dataframe
-  drop_na() %>% 
+  inner_join(brunello1, by = "Symbol") %>% 
   mutate(DLD1 = ifelse(DLD1_Proliferation_Zscore >= 0, "T", "N"),
          RKO = ifelse(RKO_Proliferation_Zscore >= 0, "T", "N")) 
 
