@@ -149,7 +149,7 @@ ggplot()+
                            Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1")),
              aes(x = TOPGC_Zscore, y = TOPGC_pscore, color = TOPGC),size = 2)+
   geom_text_repel(data = subset(Brunello_mageck1, 
-                                Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1","RNF43")), 
+                                Symbol %in% c("CTNNB1","MED12","LEF1","TCF7L2","BCL9L","AXIN2","APC","CSNK1A1")), 
                   aes(x = TOPGC_Zscore, y = TOPGC_pscore,color = TOPGC,label = Symbol),
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
