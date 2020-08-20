@@ -332,6 +332,7 @@ ggplot()+
   theme_classic()+
   theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
+  geom_hline(yintercept=-log10(0.05), linetype="dashed", color = "red")+
   xlab("Z-score")+ylab("-log10(P-value)")
 
 ggsave("Figure S2A.pdf")
