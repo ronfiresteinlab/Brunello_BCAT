@@ -15,21 +15,6 @@ Enrichment_highGFP_list <- read.xlsx("./Brunello_HiGFP.xlsx")
 
 brunello_proliferation <- read.xlsx("./Proliferation_D21_plasmid.xlsx")
 
-##depmap data downloaded on 24-July-2019
-#Common essential gene list
-Essential_gene <- read.csv("./Achilles_common_essentials.csv", header = T, stringsAsFactors = F)
-#CCLE expression
-DLD1_RKO <- read.xlsx("./DLD1_RKO_expression.xlsx")
-
-# for Table S1
-df1 <- Enrichment_list %>% 
-  left_join(Enrichment_highGFP_list, by = "Symbol") %>% 
-  left_join(brunello_proliferation, by = "Symbol") %>% 
-  left_join(DLD1_RKO, by = "Symbol") %>% 
-  left_join(Essential_gene, by = "Symbol")
-
-write.csv(df1, "Table S1.csv")
-
 ##process raw data for volcanoplot
 #normalize the reads and calculate the fold-change values per sgRNA
 brunello <- brunello_rawread %>% 
