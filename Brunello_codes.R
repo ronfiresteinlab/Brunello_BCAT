@@ -127,7 +127,7 @@ Brunello_mageck1  <- brunello1 %>%
 
 ##make plots
 #TOPGC plot
-ggplot()+
+Fig1D <- ggplot()+
   geom_point(data = Brunello_mageck1,
              aes(x = TOPGC_Zscore, y = TOPGC_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck1, 
@@ -139,6 +139,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0
                   )+
@@ -147,10 +148,10 @@ ggplot()+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave(filename = "Figure 1D.pdf", width = 4.05, height = 3.6)
+ggsave(Fig1D, filename = "Figure 1D.pdf", width = 4.05, height = 3.6)
 
 #MYC plot
-ggplot()+
+Fig2C <- ggplot()+
   geom_point(data = Brunello_mageck1,
              aes(x = MYC_Zscore, y = MYC_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck1, 
@@ -163,6 +164,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
@@ -170,10 +172,10 @@ ggplot()+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 2C.pdf", width = 4.05, height = 3.6)
+ggsave(Fig2C, filename = "Figure 2C.pdf", width = 4.05, height = 3.6)
 
 #Axin2 plot
-ggplot()+
+Fig2D <- ggplot()+
   geom_point(data = Brunello_mageck1,
              aes(x = AXIN2_Zscore, y = AXIN2_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck1, 
@@ -186,6 +188,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0
   )+
@@ -194,10 +197,10 @@ ggplot()+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 2D.pdf", width = 4.05, height = 3.6)
+ggsave(Fig2D, filename = "Figure 2D.pdf", width = 4.05, height = 3.6)
 
 #RKO plot
-ggplot()+
+Fig2E <- ggplot()+
   geom_point(data = Brunello_mageck1,
              aes(x = RKO_Zscore, y = RKO_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck1, 
@@ -210,6 +213,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
@@ -217,7 +221,7 @@ ggplot()+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure 2E.pdf", width = 4.05, height = 3.6)
+ggsave(Fig2E, filename = "Figure 2E.pdf", width = 4.05, height = 3.6)
 
 ###highGFP plot
 
@@ -240,7 +244,7 @@ Brunello_mageck_highGFP <- Enrichment_highGFP_list %>%
          RKO = ifelse(RKO_highZscore >= 0, "T", "N"))  
 
 #TOPGC-highGFP plot
-ggplot()+
+Fig1B <- ggplot()+
   geom_point(data = Brunello_mageck_highGFP,
              aes(x = TOPGC_highZscore, y = TOPGC_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck_highGFP, 
@@ -252,6 +256,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
@@ -259,12 +264,10 @@ ggplot()+
   ylim(0,5.5)+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure S1B.pdf", width = 4.05, height = 3.6)
+ggsave(Fig1B, filename = "Figure S1B.pdf", width = 4.05, height = 3.6)
 
 
 ##make proliferation plots
-str(brunello_proliferation)
-
 Brunello_mageck_Proliferation <- brunello_proliferation %>% 
   transmute(Symbol= Symbol,
          DLD1_pscore = ifelse(is.finite(-log10(DLD1_Proliferation_pvalue)),
@@ -277,7 +280,7 @@ Brunello_mageck_Proliferation <- brunello_proliferation %>%
          RKO = ifelse(RKO_Proliferation_Zscore >= 0, "T", "N")) 
 
 #DLD1 Proliferation
-ggplot()+
+FigS1E <- ggplot()+
   geom_point(data = Brunello_mageck_Proliferation,
              aes(x = DLD1_Proliferation_Zscore, y = DLD1_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck_Proliferation, 
@@ -289,6 +292,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
@@ -297,10 +301,10 @@ ggplot()+
   geom_hline(yintercept=-log10(0.05), linetype="dashed", color = "red")+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure S1E.pdf")
+ggsave(FigS1E, filename = "Figure S1E.pdf")
 
 #RKO Proliferation
-ggplot()+
+FigS2A <- ggplot()+
   geom_point(data = Brunello_mageck_Proliferation,
              aes(x = RKO_Proliferation_Zscore, y = RKO_pscore),color = "grey",size = 1)+
   geom_point(data = subset(Brunello_mageck_Proliferation, 
@@ -312,6 +316,7 @@ ggplot()+
                   box.padding = unit(0.35, "lines"),
                   point.padding = unit(0.3, "lines"),
                   nudge_y = 0.1,
+                  fontface = "italic",
                   segment.color = NA,
                   segment.size = 0)+
   theme_classic()+
@@ -320,7 +325,7 @@ ggplot()+
   geom_hline(yintercept=-log10(0.05), linetype="dashed", color = "red")+
   xlab("Z-score")+ylab("-log10(P-value)")
 
-ggsave("Figure S2A.pdf")
+ggsave(FigS2A, filename = "Figure S2A.pdf")
 
 
 dev.off()
