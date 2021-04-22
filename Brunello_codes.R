@@ -298,7 +298,7 @@ FigS1E <- ggplot()+
   theme_classic()+
   theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
-  geom_hline(yintercept=-log10(0.05), linetype="dashed", color = "red")+
+  geom_hline(yintercept=-log10(0.10), linetype="dashed", color = "red")+
   xlab("Z-score")+ylab("-log10(P-value)")
 
 ggsave(FigS1E, filename = "Figure S1E.pdf")
@@ -322,7 +322,7 @@ FigS2A <- ggplot()+
   theme_classic()+
   theme(legend.position = "none", axis.text=element_text(size=12))+
   ylim(0,5.5)+
-  geom_hline(yintercept=-log10(0.05), linetype="dashed", color = "red")+
+  geom_hline(yintercept=-log10(0.10), linetype="dashed", color = "red")+
   xlab("Z-score")+ylab("-log10(P-value)")
 
 ggsave(FigS2A, filename = "Figure S2A.pdf")
